@@ -1,0 +1,16 @@
+name: Primeiro exemplo CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Exibir uma mensagem
+        run: echo "A ação de exemplo foi ativada pelo gatilho!"
