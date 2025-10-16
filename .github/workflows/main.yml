@@ -26,4 +26,4 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
-          args: --severity-threshold=high # <-- Adicione esta linha
+          args: --severity-threshold=medium # <-- Adicione esta linha
