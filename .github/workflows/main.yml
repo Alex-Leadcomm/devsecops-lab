@@ -1,4 +1,4 @@
-name: Primeiro exemplo CI
+name: Golem de Segurança Snyk
 
 on:
   push:
@@ -7,10 +7,22 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  snyk_scan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Exibir uma mensagem
-        run: echo "A ação de exemplo foi ativada pelo gatilho!"
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: monitor
